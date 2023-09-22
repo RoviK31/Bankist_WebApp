@@ -48,4 +48,19 @@ document.querySelector('.btn--close-cookie').addEventListener('click', function(
 
 //Styles
 message.style.backgroundColor = '#37383d'
-message.style.width = '120%'
+message.style.width = '103%'
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered')
+
+
+//Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+logo.setAttribute('company', 'bankist')
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+
