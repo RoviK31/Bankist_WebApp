@@ -84,7 +84,6 @@ const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
-  
 
   //old school way of smooth scrolling
   //Scrolling
@@ -93,18 +92,41 @@ btnScrollTo.addEventListener('click', function (e) {
   //   section1.top + window.pageYOffset
   // );
 
-//   window.scrollTo({
-//  left:   s1coords.left + window.pageXOffset,
-//   top:  section1.top + window.pageYOffset,
-//   behavior: 'smooth'
-//   }
-//   );
+  //   window.scrollTo({
+  //  left:   s1coords.left + window.pageXOffset,
+  //   top:  section1.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  //   }
+  //   );
 
-//modern way
-section1.scrollIntoView({behavior: 'smooth'})
+  //modern way
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+//Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
+tabsContainer.addEventListener('click', function (e) {
+  //event delegation
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+  //Guard clause
+  if (!clicked) return;
+
+  // Active tab
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  //Activate content
+  clicked.classList.add('operations__tab--active');
+
+  //Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
 // const h1 = document.querySelector('h1')
 
 // // h1.addEventListener('mouseenter', function(e){
@@ -117,8 +139,6 @@ section1.scrollIntoView({behavior: 'smooth'})
 // h1.addEventListener('mouseenter', alertH1)
 // setTimeout(()=>
 // h1.removeEventListener('mouseenter', alertH1),3000)
-
-
 
 // h1.onmouseenter = function(e){
 //   alert('onmouseenter: Great! You are reading the heading :D')
