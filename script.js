@@ -111,7 +111,7 @@ const tabsContent = document.querySelectorAll('.operations__content');
 tabsContainer.addEventListener('click', function (e) {
   //event delegation
   const clicked = e.target.closest('.operations__tab');
-  console.log(clicked);
+  // console.log(clicked);
   //Guard clause
   if (!clicked) return;
 
@@ -127,6 +127,29 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+// Menu fade animation
+const nav = document.querySelector('.nav')
+
+nav.addEventListener('mouseover', function(e){
+  if(e.target.classList.contains('nav__link')){
+    const link = e.target
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link')
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if(el !== link){
+      el.style.opacity = 0.5
+      } 
+    })
+    logo.style.opacity = 0.5
+  }
+})
+
+nav.addEventListener('mouseout', function(e){
+
+})
+
 // const h1 = document.querySelector('h1')
 
 // // h1.addEventListener('mouseenter', function(e){
