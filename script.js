@@ -243,6 +243,8 @@ imgTargets.forEach(img => imgObserver.observe(img));
 // const h1 = document.querySelector('h1')
 
 //Slider
+const slider = function(){
+
 
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
@@ -266,7 +268,7 @@ const createDots = function () {
   });
 };
 
-createDots()
+
 
 const activateDot = function(slide){
   document.querySelectorAll('.dots__dot').forEach(dot=>{
@@ -281,9 +283,7 @@ const goToSlide = function (slide) {
     s.style.transform = `translateX(${100 * (i - slide)}%)`;
   });
 };
-activateDot(0)
 
-goToSlide(0);
 
 const nextSlide = function () {
   if (curSlide === maxSlide - 1) {
@@ -306,6 +306,13 @@ const prevSlide = function () {
   activateDot(curSlide)
 };
 
+const init = function(){
+  createDots()
+  activateDot(0)
+  goToSlide(0);
+}
+init()
+
 //Next slide
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', prevSlide);
@@ -323,6 +330,8 @@ dotContainer.addEventListener('click', function(e){
     activateDot(slide)
   }
 })
+}
+slider()
 // // h1.addEventListener('mouseenter', function(e){
 // //   alert('addEventListener: Great! You are reading the heading :D')
 // // })
